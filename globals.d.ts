@@ -4,6 +4,7 @@ import Expectation from "./src/Expectation";
 import Context from "./src/Context";
 
 declare global {
+	type CustomMatchers = Record<never, (received: unknown, expected: unknown) => { pass: boolean; message: string }>;
 	/**
 	 * This function creates a new describe block. These blocks correspond to the things that are being tested.
 	 *
@@ -55,10 +56,16 @@ declare global {
 	 */
 	function FIXME(): void;
 
-	/**
-	 * Creates a new Expectation, used for testing the properties of the given value.
-	 */
-	function expect<T>(value: T): Expectation<T>;
+	const expect: {
+		/**
+		 * Creates a new Expectation, used for testing the properties of the given value.
+		 */
+		<T>(value: T): Expectation<T> & CustomMatchers;
+		/**
+		 * Adds a custom matcher
+		 */
+		extend(matchers: Partial<CustomMatchers>): void;
+	};
 
 	/**
 	 * Returns a function after all the tests within its scope run. This is useful if you want to clean up some global state that is used by other tests within its scope.
