@@ -11,6 +11,13 @@ declare global {
 	 * Put it blocks inside of describe blocks to describe what behavior should be correct.
 	 */
 	function describe(phrase: string, callback: (context: Context) => void): void;
+	
+	/**
+	 * These methods are special versions of it that automatically mark the it block as focused or skipped.
+	 *
+	 * Put it blocks inside of describe blocks to describe what behavior should be correct.
+	 */
+	function describe(phrase: string, callback: (context: Context) => void): void;
 
 	/**
 	 * This function creates a new 'it' block.
