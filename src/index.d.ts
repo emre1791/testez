@@ -10,7 +10,7 @@ import TestRunner from "./TestRunner";
 import TestSession from "./TestSession";
 
 interface TestEZ {
-	run(testRoot: Instance, callback: (runResults: RunResults) => void): void;
+	run: (testRoot: Instance, callback: (runResults: RunResults) => void) => void;
 
 	Expectation: typeof Expectation;
 	TestBootstrap: TestBootstrap;
